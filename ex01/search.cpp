@@ -2,13 +2,23 @@
 
 void    display_index(int index)
 {
+    std::cout << std::setw(10) << std::right;
     std::cout << index;
-    for (int i = 0; i < 9; i++)
-        std::cout << " ";
 }
 void    display_str(std::string str)
 {
-    /////////////////
+    
+    if (str.length() > 10)
+    {
+        for (int i = 0; i < 9; i++)
+            std::cout << str[i];
+        std::cout << '.';
+    }
+    else
+    {
+        std::cout << std::setw(10) << std::right;
+        std::cout << str;
+    }
 }
 
 
@@ -44,7 +54,7 @@ void    Search_for_contact(PhoneBook *phone_book)
     }
     if (range == 0)
     {
-        std::cout << "there is no concat yet ! \n";
+        std::cout << "there is no contact yet ! \n";
         return ;
     }
     std::cout << "enter the index of the contact you want : ";
