@@ -1,28 +1,17 @@
-#include <iostream>
-#include <string>
-#include <iomanip>
+#include "PhoneBook.hpp"
 
-class Contact{
-    private :
-        std::string first_name;
-        std::string last_name;
-        std::string nickname;
-        std::string phone_number;
-        std::string darkest_secret;
-    public :
-        int is_filled = 0;
-        void    fill_data(std::string first_name,std::string last_name,
+void    Contact::fill_data(std::string first_name,std::string last_name,
          std::string nickname, std::string phone_number, std::string darkest_secret)
-        {
+{
             this->first_name = first_name;
             this->last_name = last_name;
             this->nickname = nickname;
             this->phone_number = phone_number;
             this->darkest_secret = darkest_secret;
-        }
+}
 
-        std::string get_attribute(std::string attr)
-        {
+std::string Contact::get_attribute(std::string attr)
+{
             if (!attr.compare("first_name"))
                 return this->first_name;
             else if (!attr.compare("last_name"))
@@ -34,10 +23,10 @@ class Contact{
             else if (!attr.compare("darkest_secret"))
                 return this->darkest_secret;
             return "error";
-        }
+}
 
-        void    display_info()
-        {
+void    Contact::display_info()
+{
             std::cout << "first_name : " + this->first_name;
             std::cout << '\n';
             std::cout << "last_name : " + this->last_name;
@@ -48,23 +37,38 @@ class Contact{
             std::cout << '\n';
             std::cout << "darkest_secret : " + this->darkest_secret;
             std::cout << '\n';
-        }
-};
-
-
-class PhoneBook{
-    public :
-        Contact array_contact[8];
-};
+}
 
 
 
-enum{
-    ADD = 1,
-    SEARCH = 2,
-    EXIT = 3
-};
+int check_order_exist(std::string user_order)
+{
+    if (!user_order.compare("ADD"))
+        return ADD;
+    else if (!user_order.compare("SEARCH"))
+        return SEARCH;
+    else if (!user_order.compare("EXIT"))
+        return EXIT;
+    else
+        return 0;
+}
 
 
-void    Add_contact(PhoneBook *phone_book);
-void    Search_for_contact(PhoneBook *phone_book);
+int main()
+{
+    PhoneBook phone_book;
+    std::string user_order;
+    int order;
+    while (1)
+    {
+        std::cout << "PhoneBook--your orders : ADD-SEARCH-EXIT\n: ";
+        std::cin >> user_order;
+        order = check_order_exist(user_order);
+        if (order == ADD)
+            Add_contact(&phone_book);
+        else if (order == SEARCH)
+            Search_for_contact(&phone_book);
+        else if (order == EXIT)
+            return 0;
+    } 
+}
