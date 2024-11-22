@@ -3,7 +3,7 @@
 
 int get_length(char *str)
 {
-    int     i;
+    int     i = 0;
     for (i = 0; str[i] != '\0'; i++){}
     return (i);
 }
@@ -18,27 +18,13 @@ int main(int argc, char **argv)
     for (int i = 1; i < argc; i++)
     {
         int length = get_length(argv[i]);
-        int find_space = 0;
-        int non_space = 0;
         for (int j = 0; j < length ; j++)
         {
-            if (argv[i][j] == ' ')
-                find_space++;
+            if (isalpha(argv[i][j]) && islower(argv[i][j]))
+                std::cout << (char)toupper(argv[i][j]);
             else
-            {
-                if (find_space && non_space)
-                    std::cout << ' ';
-                find_space = 0;
-                non_space = 1;
-                if (isalpha(argv[i][j]) && islower(argv[i][j]))
-                    std::cout << (char)toupper(argv[i][j]);
-                else
-                    std::cout << argv[i][j];
-            }
+                std::cout << argv[i][j];
         }
-
-        if (i != argc - 1)
-            std::cout << " ";
     }
     std::cout << "\n";
 }

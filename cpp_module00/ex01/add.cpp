@@ -39,23 +39,23 @@ void    Add_contact(PhoneBook *phone_book)
         std::string darkest_secret;
 
         std::cout << "enter your first_name :";
-        std::cin >> first_name;
+        std::getline(std::cin , first_name);
 
 
         std::cout << "enter your last_name :";
-        std::cin >> last_name;
+        std::getline(std::cin , last_name);
 
 
         std::cout << "enter your nickname :";
-        std::cin >> nickname;
+        std::getline(std::cin , nickname);
 
         
         std::cout << "enter your phone number :";
-        std::cin >> phone_number;
+        std::getline(std::cin , phone_number);
         
 
         std::cout << "enter your darkest_secret :";
-        std::cin >> darkest_secret;
+        std::getline(std::cin , darkest_secret);
 
         phone_book->array_contact[index].fill_data(first_name, last_name, nickname,
         phone_number, darkest_secret);

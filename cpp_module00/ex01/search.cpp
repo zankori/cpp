@@ -1,4 +1,4 @@
-#include "PhoneBook.hpp"
+#include "code.hpp"
 
 void    display_index(int index)
 {
@@ -26,6 +26,9 @@ void    display_str(std::string str)
 void    display(int index, std::string first_name,
 std::string last_name, std::string nickname)
 {
+    for (int i = 0; i < 43; i++)
+        std::cout << '_';
+    std::cout << '\n';
     display_index(index);
     std::cout << "|";
     display_str(first_name);
@@ -33,12 +36,14 @@ std::string last_name, std::string nickname)
     display_str(last_name);
     std::cout << "|";
     display_str(nickname);
+    std::cout << '\n';
 }
 
 
 void    Search_for_contact(PhoneBook *phone_book)
 {
-    int index = 0;
+    std::string index;
+    int num = 0;
     int range = 0;
     for (int i = 0; i < 8; i++)
     {
@@ -48,25 +53,32 @@ void    Search_for_contact(PhoneBook *phone_book)
         phone_book->array_contact[i].get_attribute("first_name"), 
         phone_book->array_contact[i].get_attribute("last_name"), 
         phone_book->array_contact[i].get_attribute("nickname"));
-        std::cout << "\n";
         range++;
         }
     }
     if (range == 0)
     {
-        std::cout << "there is no contact yet ! \n";
+        std::cout << "there is no contact yet !" << std::endl;
         return ;
     }
-    std::cout << "enter the index of the contact you want : ";
-    std::cin >> index;
-    if (std::cin.fail())
+    int flag_index = 0;
+    while (!flag_index)
     {
-        std::cout << "not a number !!!!!" << '\n';
-        exit(1);
-    }
-    if (index >= 0 && index < range)
-        phone_book->array_contact[index].display_info();
-    else
-        std::cout << "index you typed is out of range !" << '\n';
+        std::cout << "enter the index (begin with 0) of the contact you want : ";
+        std::getline(std::cin, index);
+        if (index.size() == 1 && index[0] >= '0' && index[0] <= '7')
+        {
+            num = index[0] - 48;
+            if (num >= 0 && num < range)
+            {
+                phone_book->array_contact[num].display_info();
+                flag_index = 1;
+            }
+            else
+                std::cout << "index you typed is not in the contact list !" << std::endl;
+        }
+        else
+            std::cout << "wrong index !" << std::endl;
+    } 
 
 }
