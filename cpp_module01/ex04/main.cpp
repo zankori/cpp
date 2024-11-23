@@ -1,26 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-
-void    fill_newfile(std::ofstream &file_replace, std::string line)
-{
-    file_replace << line;
-    if (file_replace.fail())
-    {
-        std::cerr << "Error during reading from the file !" << std::endl;
-        exit (1);
-    }
-}
-
-int check_error(std::ifstream &file)
-{
-    if (file.is_open() == false)
-    {
-        std::cerr << "fail when opening the file !" << std::endl;
-        return (-1);
-    }
-    return (0);
-}
+#include "Sed.hpp"
 
 int main(int argc, char **argv)
 {
@@ -38,9 +16,12 @@ int main(int argc, char **argv)
     std::string s1 = argv[2];
     std::string s2 = argv[3];
 
-    // if (s1.empty())
-    //     std::cout << "p00 \n";
-
+    if (s1.empty() || s2.empty())
+    {
+        std::cerr << "error s1 or s2 is empty!" << std::endl;
+        return (1);
+    }
+    
     int index = 0;
 
     file_one.open(file_name);
