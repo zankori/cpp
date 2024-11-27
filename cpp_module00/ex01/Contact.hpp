@@ -13,7 +13,7 @@ class Contact{
         std::string phone_number;
         std::string darkest_secret;
     public :
-        int is_filled = 0;
+        int is_filled;
         void    fill_data(std::string first_name,std::string last_name,
         std::string nickname, std::string phone_number, std::string darkest_secret);
         std::string get_attribute(std::string attr);

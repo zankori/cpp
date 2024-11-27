@@ -1,11 +1,22 @@
-file = megaphone.cpp
-out = megaphone
-flags = -Wall -Wextra -Werror
+SRC = megaphone.cpp
+OBJ = $(SRC:.cpp=.o)
+CC = c++
+RM = rm -f
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-all : 
-	c++ $(flags) $(file) -o $(out)
-clean : 
-	rm -rf megaphone.o
-fclean : clean
-	rm -rf megaphone
-re : fclean all_
+NAME = megaphone
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
+
+clean:
+	$(RM) $(OBJ)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re

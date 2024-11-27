@@ -12,10 +12,16 @@ int check_order_exist(std::string user_order)
         return 0;
 }
 
+void    initialize(PhoneBook *phone_book)
+{
+    for (int i = 0; i < 8; i++)
+        phone_book->array_contact[i].is_filled = 0;
+}
 
 int main()
 {
     PhoneBook phone_book;
+    initialize(&phone_book);
     std::string user_order;
     int order;
     while (1)
