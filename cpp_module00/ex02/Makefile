@@ -4,12 +4,12 @@ CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
 
-# UNAME = $(shell uname -s)
+UNAME = $(shell uname -s)
 
-# ifeq ($(UNAME), Linux)
-# CPPFLAGS = -Wall -Wextra -pedantic
-# $(warning Linux detected! Disabling -Werror and -std=c++98...)
-# endif
+ifeq ($(UNAME), Linux)
+CPPFLAGS = -Wall -Wextra -pedantic
+$(warning Linux detected! Disabling -Werror and -std=c++98...)
+endif
 
 NAME = dream
 
