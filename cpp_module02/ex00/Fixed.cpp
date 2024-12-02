@@ -6,7 +6,7 @@ Fixed::Fixed()
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed &anotherfixed)
+Fixed::Fixed(const Fixed &anotherfixed)
 {
     this->FP_value = anotherfixed.FP_value;
     std::cout << "Copy constructor called" << std::endl;
