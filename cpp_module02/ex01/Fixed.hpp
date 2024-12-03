@@ -2,7 +2,7 @@
 #define FIXED_HPP
 
 #include <iostream>
-
+#include <cmath>
 class Fixed{
     private:
         int FP_value; // fixed-point number value .
@@ -21,5 +21,8 @@ class Fixed{
         void setRawBits(int const raw);
         ~Fixed();
 };
+
+std::ostream& operator<<(std::ostream &os, const Fixed& ove_fixed);
+
 
 #endif
