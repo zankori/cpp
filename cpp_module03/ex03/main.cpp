@@ -1,7 +1,10 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
+#include <iostream>
+
+
+
 int main()
 {
-    FragTrap sc("frag1");
-    sc.highFivesGuys();
+  
 }

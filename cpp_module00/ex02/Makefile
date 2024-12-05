@@ -1,29 +1,25 @@
-SRC = Account.cpp tests.cpp
-OBJ = $(SRC:.cpp=.o)
-CC = c++
-RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -pedantic
+CXX := c++
 
-UNAME = $(shell uname -s)
+CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
-ifeq ($(UNAME), Linux)
-CPPFLAGS = -Wall -Wextra -pedantic
-$(warning Linux detected! Disabling -Werror and -std=c++98...)
-endif
+NAME :=	Account
 
-NAME = dream
+SRCS :=  Account.cpp tests.cpp
 
-all: $(NAME)
+OBJS := $(SRCS:.cpp=.o)
 
-$(NAME): $(OBJ)
-	$(CC) $(CPPFLAGS) $(OBJ) -o $(NAME)
 
-clean:
-	$(RM) $(OBJ)
+all : $(NAME)
 
-fclean: clean
-	$(RM) $(NAME)
+$(NAME) : $(OBJS)
+	$(CXX) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-re: fclean $(NAME)
+clean :
+	rm -rf $(OBJS)
 
-.PHONY: all clean fclean re
+fclean : clean
+	rm -rf $(NAME)
+
+re : fclean all
+
+.PHONY : clean

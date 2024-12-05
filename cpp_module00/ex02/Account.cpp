@@ -1,9 +1,9 @@
-#include <vector>
-#include <algorithm>
-#include <functional>
 #include <iostream>
-#include <chrono>
+#include <functional>
 #include "Account.hpp"
+#include <ctime>
+#include <iomanip>
+
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -114,12 +114,13 @@ bool	Account::makeWithdrawal( int withdrawal )
 
 void Account::_displayTimestamp()
 {
-    auto now = std::chrono::system_clock::now();
-    std::time_t tim = std::chrono::system_clock::to_time_t(now);
-    std::string cur_time = ctime(&tim);
-    if (!cur_time.empty() && cur_time.back() == '\n')
-        cur_time.pop_back();
-    std::cout << "[" << cur_time << "] ";
+    time_t now;
+    time_t start;
+
+    time(&start);
+    time(&now);
+    
+    std::cout << "[" << start - now << "] ";
 }
 
 

@@ -103,4 +103,7 @@
         this->Attack_damage = attack_damage;
     }
 
- 
+    std::string ClapTrap::getName()
+    {
+        return this->Name;
+    }

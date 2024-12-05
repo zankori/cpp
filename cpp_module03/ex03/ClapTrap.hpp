@@ -22,6 +22,8 @@ class ClapTrap{
     void beRepaired(unsigned int amount);
     int getter_attackDMG();
     void setting_attackDMG(int attack_damage);
+    // -- //
+    std::string getName();
 };
 
 #endif
